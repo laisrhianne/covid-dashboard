@@ -16,3 +16,8 @@ export interface IReport {
   active_diff: number;
   fatality_rate: number;
 }
+
+export interface IGraphData {
+  x: string[];
+  y: number[];
+}
