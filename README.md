@@ -1,4 +1,6 @@
-# covid-dashboard
+# Covid Dashboard
+
+Dashboard to monitor new daily cases of covid-19 by country.
 
 ## Project setup
 ```
