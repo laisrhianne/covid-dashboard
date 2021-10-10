@@ -1,5 +1,6 @@
 <template>
   <v-container>
+    <h1 class="text-md-center mt-5 mb-5">Covid-19 Dashboard</h1>
     <v-container id="forms-container">
       <!-- Forms -->
       <RegionAutocompleteCard @selectedRegion="loadReports" />
@@ -90,7 +91,8 @@ export default Vue.extend({
   width: 100%;
 }
 
-v-card-title {
+.v-card__text,
+.v-card__title {
   word-break: normal;
 }
 
