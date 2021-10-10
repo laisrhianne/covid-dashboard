@@ -87,6 +87,12 @@ export default Vue.extend({
   justify-content: space-between;
 }
 
+.form-card {
+  margin-top: 5%;
+  width: 45%;
+  height: 200px;
+}
+
 #graphs-container {
   width: 100%;
 }

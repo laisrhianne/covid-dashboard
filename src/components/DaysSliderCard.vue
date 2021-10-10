@@ -1,9 +1,5 @@
 <template>
-  <v-card
-    class="form-card"
-    color="white"
-    :width="windowWidth > 480 ? 0.35 * windowWidth : 0.9 * windowWidth"
-  >
+  <v-card class="form-card" color="white">
     <v-card-title class="primary white--text">
       <p class="card-title">Days for Moving Average</p>
     </v-card-title>
