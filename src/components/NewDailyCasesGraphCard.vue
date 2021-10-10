@@ -1,7 +1,27 @@
 <template>
   <v-card color="white" :width="0.9 * windowWidth">
-    <v-card-title class="primary white--text">
+    <v-card-title
+      class="
+        primary
+        white--text
+        d-flex
+        flex-row
+        justify-space-between
+        align-start
+      "
+    >
       <p class="card-title">New Daily Cases</p>
+      <v-expansion-panels :style="`maxWidth: ${windowWidth * 0.2}px;`">
+        <v-expansion-panel
+          id="options-panel"
+          :style="`maxWidth: ${windowWidth * 0.2}px;`"
+        >
+          <v-expansion-panel-header> Options </v-expansion-panel-header>
+          <v-expansion-panel-content>
+            <v-checkbox></v-checkbox>
+          </v-expansion-panel-content>
+        </v-expansion-panel>
+      </v-expansion-panels>
     </v-card-title>
     <v-card-text>
       <v-container v-show="!loadingReports" id="daily-cases-graph"
@@ -110,4 +130,8 @@ export default Vue.extend({
 });
 </script>
 
-<style></style>
+<style>
+#options-panel {
+  position: absolute;
+}
+</style>
