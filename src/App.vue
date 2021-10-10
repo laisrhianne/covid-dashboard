@@ -1,6 +1,12 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" class="d-flex justify-start" dark>
+    <v-app-bar
+      app
+      id="app-bar"
+      color="primary"
+      class="d-flex justify-start"
+      dark
+    >
       <v-img
         alt="DataHow Logo"
         contain
@@ -57,3 +63,16 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+#app-bar {
+  min-height: 60px;
+}
+@media screen and (max-width: 480px) {
+  #app-bar {
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+  }
+}
+</style>
