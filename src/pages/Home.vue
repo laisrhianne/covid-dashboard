@@ -60,7 +60,7 @@ export default Vue.extend({
     async loadReports(iso: string) {
       this.selectedRegion = iso;
       this.loadingReports = true;
-      this.reports = await getReports(iso, 15).then((data) => {
+      this.reports = await getReports(iso).then((data) => {
         this.loadingReports = false;
         return data;
       });
