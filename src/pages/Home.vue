@@ -12,11 +12,11 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
-import RegionAutocompleteCard from "@/components/RegionAutocompleteCard.vue";
+import Vue from 'vue';
+import RegionAutocompleteCard from '@/components/RegionAutocompleteCard.vue';
 
 export default Vue.extend({
-  name: "Home",
+  name: 'Home',
 
   components: {
     RegionAutocompleteCard,

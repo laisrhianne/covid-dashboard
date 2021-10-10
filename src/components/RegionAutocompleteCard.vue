@@ -15,15 +15,15 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue from 'vue';
 export default Vue.extend({
-  name: "RegionAutocompleteCard",
+  name: 'RegionAutocompleteCard',
 
   data() {
     return {
       windowWidth: window.screen.width,
       windowHeight: window.screen.height,
-      selectedRegion: "",
+      selectedRegion: '',
     };
   },
 });
