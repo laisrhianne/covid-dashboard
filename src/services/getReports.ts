@@ -12,7 +12,7 @@ async function apiRequest(date: string, iso: string): Promise<IReport> {
       .get('reports/total', { params: { date, iso } })
       .then((response) => {
         const data: IResponse = response.data;
-        return data.data;
+        resolve(data.data);
       })
       .catch((err) => {
         reject([]);

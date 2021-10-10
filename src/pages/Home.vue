@@ -2,7 +2,7 @@
   <v-container>
     <v-container class="d-flex flex-row justify-space-between">
       <!-- Forms -->
-      <RegionAutocompleteCard />
+      <RegionAutocompleteCard @selectedRegion="loadReports" />
       <DaysSliderCard />
     </v-container>
     <v-container class="d-flex flex-column justify-center align-center">
@@ -17,6 +17,8 @@ import Vue from 'vue';
 import RegionAutocompleteCard from '@/components/RegionAutocompleteCard.vue';
 import DaysSliderCard from '@/components/DaysSliderCard.vue';
 import NewDailyCasesGraphCard from '@/components/NewDailyCasesGraphCard.vue';
+import { IReport } from '@/@types';
+import { getReports } from '@/services/getReports';
 
 export default Vue.extend({
   name: 'Home',
@@ -25,6 +27,22 @@ export default Vue.extend({
     RegionAutocompleteCard,
     DaysSliderCard,
     NewDailyCasesGraphCard,
+  },
+
+  data() {
+    return {
+      reports: [] as IReport[],
+      selectedRegion: '',
+    };
+  },
+
+  methods: {
+    async loadReports(iso: string) {
+      this.selectedRegion = iso;
+      const data = await getReports(iso, 15);
+      this.reports = data;
+      console.log(data);
+    },
   },
 });
 </script>
