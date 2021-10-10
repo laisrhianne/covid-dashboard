@@ -7,7 +7,7 @@
     </v-container>
     <v-container class="d-flex flex-row justify-center align-center">
       <v-progress-linear
-        :active="loadingReports && selectedRegion"
+        :active="loadingReports && !!selectedRegion"
         indeterminate
         color="primary"
       ></v-progress-linear>

@@ -14,6 +14,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import Plotly from 'plotly.js-dist';
+import { std as standardDeviation } from 'mathjs';
 import { IGraphData } from '@/@types';
 import { getSimpleMovingAverage } from '@/utils/simpleMovingAverage';
 
@@ -43,6 +44,12 @@ export default Vue.extend({
           this.days
         );
 
+        const errorBar = this.newDailyCases.y.map(
+          () =>
+            (1.96 * standardDeviation(this.newDailyCases.y)) /
+            Math.sqrt(this.newDailyCases.y.length)
+        );
+
         const config = { responsive: true };
 
         const layout = {
@@ -61,6 +68,12 @@ export default Vue.extend({
         const mainTrace = {
           x: this.newDailyCases.x,
           y: this.newDailyCases.y,
+          error_y: {
+            type: 'data',
+            array: errorBar,
+            visible: true,
+            color: '#606060',
+          },
           type: 'scatter',
           name: 'Daily New Cases',
           marker: {
@@ -72,12 +85,10 @@ export default Vue.extend({
         const movingAverageTrace = {
           x: this.newDailyCases.x,
           y: movingAverage,
-          type: 'scatter',
+          fillcolor: 'primary',
           name: 'Moving Average',
-          marker: {
-            color: 'indigo',
-            opacity: 0.7,
-          },
+          showLegend: false,
+          type: 'scatter',
         };
 
         const data = [mainTrace, movingAverageTrace];
