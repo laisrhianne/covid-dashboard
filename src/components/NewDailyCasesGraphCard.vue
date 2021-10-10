@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import Vue from 'vue';
+import Plotly from 'plotly.js-dist';
 
 export default Vue.extend({
   name: 'NewDailyCasesGraphCard',
