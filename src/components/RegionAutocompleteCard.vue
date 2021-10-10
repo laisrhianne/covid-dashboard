@@ -2,7 +2,7 @@
   <v-card
     class="form-card"
     color="white"
-    :width="windowWidth > 480 ? 0.4 * windowWidth : 0.9 * windowWidth"
+    :width="windowWidth > 480 ? 0.35 * windowWidth : 0.9 * windowWidth"
   >
     <v-card-title class="primary white--text">
       <p class="card-title">Search by Region</p>
