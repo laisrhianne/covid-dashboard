@@ -1,6 +1,6 @@
 module.exports = {
   transpileDependencies: ['vuetify'],
-  devServ: {
+  devServer: {
     proxy: {
       '^/api': {
         target: 'https://covid-api.com/',
