@@ -13,6 +13,7 @@
         item-value="iso"
         clearable
         outlined
+        @change="emitRegion"
       ></v-autocomplete>
     </v-card-actions>
   </v-card>
@@ -33,6 +34,12 @@ export default Vue.extend({
       regions: [] as IRegion[],
       selectedRegion: '',
     };
+  },
+
+  methods: {
+    emitRegion() {
+      this.$emit('selectedRegion', this.selectedRegion);
+    },
   },
 
   async mounted() {
