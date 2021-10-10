@@ -1,20 +1,17 @@
 <template>
   <v-card color="white" :width="0.9 * windowWidth">
-    <v-card-title
-      class="
-        primary
-        white--text
-        d-flex
-        flex-row
-        justify-space-between
-        align-start
-      "
-    >
+    <v-card-title class="primary white--text graph-card-title">
       <p class="card-title">New Daily Cases</p>
-      <v-expansion-panels :style="`maxWidth: ${windowWidth * 0.2}px;`">
+      <v-expansion-panels
+        :style="`maxWidth: ${
+          windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
+        }px;`"
+      >
         <v-expansion-panel
           id="options-panel"
-          :style="`maxWidth: ${windowWidth * 0.2}px;`"
+          :style="`maxWidth: ${
+            windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
+          }px;`"
         >
           <v-expansion-panel-header> Options </v-expansion-panel-header>
           <v-expansion-panel-content>
@@ -133,5 +130,12 @@ export default Vue.extend({
 <style>
 #options-panel {
   position: absolute;
+}
+
+.graph-card-title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 }
 </style>

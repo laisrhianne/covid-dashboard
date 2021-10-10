@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    <v-container class="d-flex flex-row justify-space-between">
+    <v-container id="forms-container">
       <!-- Forms -->
       <RegionAutocompleteCard @selectedRegion="loadReports" />
       <DaysSliderCard @selectedDays="setDays" />
@@ -75,5 +75,25 @@ export default Vue.extend({
 .card-title {
   font-size: x-large;
   font-weight: bold;
+}
+
+#forms-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 480px) {
+  #forms-container {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .form-card {
+    width: 80%;
+    height: 50%;
+  }
 }
 </style>
