@@ -17,6 +17,7 @@
       <NewDailyCasesGraphCard
         :newDailyCases="newDailyCases"
         :loadingReports="loadingReports"
+        :days="days"
       />
     </v-container>
   </v-container>
@@ -50,8 +51,8 @@ export default Vue.extend({
   },
 
   methods: {
-    setDays(days: number) {
-      this.days = days;
+    setDays(payload: number) {
+      this.days = payload;
     },
     async loadReports(iso: string) {
       this.selectedRegion = iso;

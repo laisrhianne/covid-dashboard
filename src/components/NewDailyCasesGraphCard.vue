@@ -15,6 +15,7 @@
 import Vue, { PropType } from 'vue';
 import Plotly from 'plotly.js-dist';
 import { IGraphData } from '@/@types';
+import { getSimpleMovingAverage } from '@/utils/simpleMovingAverage';
 
 export default Vue.extend({
   name: 'NewDailyCasesGraphCard',
@@ -22,6 +23,7 @@ export default Vue.extend({
   props: {
     newDailyCases: Object as PropType<IGraphData>,
     loadingReports: Boolean,
+    days: Number,
   },
 
   data() {
@@ -35,6 +37,11 @@ export default Vue.extend({
     plotGraph() {
       if (this.newDailyCases?.x?.length && this.newDailyCases?.y?.length) {
         Plotly.purge('daily-cases-graph');
+
+        const movingAverage = getSimpleMovingAverage(
+          this.newDailyCases.y,
+          this.days
+        );
 
         const config = { responsive: true };
 
@@ -62,7 +69,18 @@ export default Vue.extend({
           },
         };
 
-        const data = [mainTrace];
+        const movingAverageTrace = {
+          x: this.newDailyCases.x,
+          y: movingAverage,
+          type: 'scatter',
+          name: 'Moving Average',
+          marker: {
+            color: 'indigo',
+            opacity: 0.7,
+          },
+        };
+
+        const data = [mainTrace, movingAverageTrace];
 
         Plotly.newPlot('daily-cases-graph', data, layout, config);
       }
