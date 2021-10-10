@@ -6,7 +6,7 @@ export function getSimpleMovingAverage(values: number[], window = 5): number[] {
   let index = window - 1;
   const length = values.length + 1;
 
-  const simpleMovingAverages = [];
+  const simpleMovingAverages: number[] = [];
 
   while (++index < length) {
     const windowSlice = values.slice(index - window, index);

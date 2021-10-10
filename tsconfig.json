@@ -10,6 +10,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
+    "noImplicitAny": false,
+
     "baseUrl": ".",
     "types": [
       "webpack-env",
@@ -19,9 +21,6 @@
       "@/*": [
         "src/*"
       ],
-      "plotly.js-dist": [
-        "node_modules/@types/plotly.js"
-      ]
     },
     "lib": [
       "esnext",

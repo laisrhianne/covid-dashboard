@@ -25,7 +25,7 @@ export async function getReports(
   regionIso: string,
   days = 90
 ): Promise<IReport[]> {
-  const promises = [];
+  const promises: Promise<IReport>[] = [];
 
   const daysInMs = 24 * 60 * 60 * 1000;
   const yesterday = Date.now() - daysInMs;

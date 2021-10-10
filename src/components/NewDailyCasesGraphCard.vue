@@ -97,7 +97,7 @@ export default Vue.extend({
 
         const layout = {
           autosize: false,
-          width: this.windowWidth * 0.7,
+          width: this.windowWidth * 0.55,
           height: 250,
           margin: {
             l: 40,
