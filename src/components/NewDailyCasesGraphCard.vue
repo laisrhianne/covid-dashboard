@@ -22,6 +22,18 @@
               @change="plotGraph"
               color="red"
             ></v-checkbox>
+            <v-select
+              outlined
+              v-model="graphMode"
+              @change="plotGraph"
+              color="red"
+              :items="[
+                { name: 'Scatter', mode: 'scatter' },
+                { name: 'Bar', mode: 'bar' },
+              ]"
+              item-text="name"
+              item-value="mode"
+            ></v-select>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -55,6 +67,7 @@ export default Vue.extend({
       windowWidth: window.screen.width,
       windowHeight: window.screen.height,
       variableError: false,
+      graphMode: 'scatter',
     };
   },
 
@@ -104,7 +117,7 @@ export default Vue.extend({
             visible: true,
             color: '#606060',
           },
-          type: 'scatter',
+          type: this.graphMode,
           name: 'Daily New Cases',
           marker: {
             color: 'red',
