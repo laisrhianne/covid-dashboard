@@ -36,6 +36,7 @@ export async function getReports(
     promises.push(apiRequest(date, regionIso));
   }
 
+  // The API doesn't provide a route to search for reports within a range of dates
   const responses = (await Promise.all(promises)).filter(
     (report) => !Array.isArray(report)
   );
