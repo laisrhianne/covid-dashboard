@@ -11,11 +11,17 @@
           id="options-panel"
           :style="`maxWidth: ${
             windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
-          }px;`"
+          }px;
+          position: ${windowWidth > 430 ? 'absolute' : 'relative'}`"
         >
           <v-expansion-panel-header> Options </v-expansion-panel-header>
           <v-expansion-panel-content>
-            <v-checkbox></v-checkbox>
+            <v-checkbox
+              label="Variable Error Bars"
+              v-model="variableError"
+              @change="plotGraph"
+              color="red"
+            ></v-checkbox>
           </v-expansion-panel-content>
         </v-expansion-panel>
       </v-expansion-panels>
@@ -48,6 +54,7 @@ export default Vue.extend({
     return {
       windowWidth: window.screen.width,
       windowHeight: window.screen.height,
+      variableError: false,
     };
   },
 
@@ -65,6 +72,12 @@ export default Vue.extend({
           () =>
             (1.96 * standardDeviation(this.newDailyCases.y)) /
             Math.sqrt(this.newDailyCases.y.length)
+        );
+        const variableErrorBar = this.newDailyCases.y.map(
+          (value, index) =>
+            (1.96 *
+              standardDeviation(this.newDailyCases.y.slice(0, index + 1))) /
+            Math.sqrt(index + 1)
         );
 
         const config = { responsive: true };
@@ -87,7 +100,7 @@ export default Vue.extend({
           y: this.newDailyCases.y,
           error_y: {
             type: 'data',
-            array: errorBar,
+            array: this.variableError ? variableErrorBar : errorBar,
             visible: true,
             color: '#606060',
           },
@@ -129,7 +142,7 @@ export default Vue.extend({
 
 <style>
 #options-panel {
-  position: absolute;
+  position: relative;
 }
 
 .graph-card-title {

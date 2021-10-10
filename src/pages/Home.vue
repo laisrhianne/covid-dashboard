@@ -12,7 +12,10 @@
         color="primary"
       ></v-progress-linear>
     </v-container>
-    <v-container class="d-flex flex-column justify-center align-center">
+    <v-container
+      class="d-flex flex-column justify-center align-center"
+      id="graphs-container"
+    >
       <!-- Graphs -->
       <NewDailyCasesGraphCard
         :newDailyCases="newDailyCases"
@@ -81,6 +84,14 @@ export default Vue.extend({
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+#graphs-container {
+  width: 100%;
+}
+
+v-card-title {
+  word-break: normal;
 }
 
 @media screen and (max-width: 480px) {
