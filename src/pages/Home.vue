@@ -3,14 +3,13 @@
     <v-container class="d-flex flex-row justify-space-between">
       <!-- Forms -->
       <RegionAutocompleteCard @selectedRegion="loadReports" />
-      <DaysSliderCard />
+      <DaysSliderCard @selectedDays="setDays" />
     </v-container>
     <v-container class="d-flex flex-row justify-center align-center">
       <v-progress-linear
         :active="loadingReports && selectedRegion"
         indeterminate
         color="primary"
-        size="70"
       ></v-progress-linear>
     </v-container>
     <v-container class="d-flex flex-column justify-center align-center">
@@ -46,10 +45,14 @@ export default Vue.extend({
       selectedRegion: '',
       loadingReports: false,
       newDailyCases: {} as IGraphData,
+      days: 5,
     };
   },
 
   methods: {
+    setDays(days: number) {
+      this.days = days;
+    },
     async loadReports(iso: string) {
       this.selectedRegion = iso;
       this.loadingReports = true;

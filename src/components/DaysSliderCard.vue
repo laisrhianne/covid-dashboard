@@ -11,6 +11,7 @@
         max="90"
         :thumb-label="true"
         thumb-size="25"
+        @change="emitDays"
       ></v-slider>
     </v-card-actions>
   </v-card>
@@ -28,6 +29,12 @@ export default Vue.extend({
       windowHeight: window.screen.height,
       days: 5,
     };
+  },
+
+  methods: {
+    emitDays() {
+      this.$emit('selectedDays', this.days);
+    },
   },
 });
 </script>
