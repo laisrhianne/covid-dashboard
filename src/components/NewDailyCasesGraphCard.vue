@@ -96,8 +96,8 @@ export default Vue.extend({
         const config = { responsive: true };
 
         const layout = {
-          autosize: false,
-          width: this.windowWidth * 0.7,
+          autosize: true,
+          showLegend: true,
           height: 250,
           margin: {
             l: 40,
@@ -105,7 +105,11 @@ export default Vue.extend({
             t: 40,
             b: 40,
           },
-          showLegend: true,
+          legend: {
+            x: 1,
+            xanchor: 'right',
+            y: 1,
+          },
         };
 
         const mainTrace = {
