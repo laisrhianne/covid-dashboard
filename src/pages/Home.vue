@@ -1,39 +1,43 @@
 <template>
   <v-container>
     <h1 class="text-md-center mt-5 mb-5">Covid-19 Dashboard</h1>
-    <v-container id="forms-container">
-      <!-- Forms -->
-      <RegionAutocompleteCard @selectedRegion="loadReports" />
-      <DaysSliderCard @selectedDays="setDays" />
-    </v-container>
-    <v-container class="d-flex flex-row justify-center align-center">
-      <v-progress-linear
-        :active="loadingReports && !!selectedRegion"
-        indeterminate
-        color="primary"
-      ></v-progress-linear>
-    </v-container>
-    <v-container
-      class="d-flex flex-column justify-center align-center"
-      id="graphs-container"
-    >
-      <!-- Graphs -->
-      <NewDailyCasesGraphCard
-        :newDailyCases="newDailyCases"
-        :loadingReports="loadingReports"
-        :days="days"
-      />
+    <h2 v-if="type.title" class="text-md-center mt-5 mb-5">{{ type.title }}</h2>
+    <v-container v-if="type.title">
+      <v-container id="forms-container">
+        <!-- Forms -->
+        <RegionAutocompleteCard @selectedRegion="loadReports" />
+        <DaysSliderCard @selectedDays="setDays" />
+      </v-container>
+      <v-container class="d-flex flex-row justify-center align-center">
+        <v-progress-linear
+          :active="loadingReports && !!selectedRegion"
+          indeterminate
+          color="primary"
+        ></v-progress-linear>
+      </v-container>
+      <v-container
+        class="d-flex flex-column justify-center align-center"
+        id="graphs-container"
+      >
+        <!-- Graphs -->
+        <NewDailyCasesGraphCard
+          :newDailyCases="newDailyCases"
+          :loadingReports="loadingReports"
+          :days="days"
+        />
+      </v-container>
     </v-container>
   </v-container>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
+import Vue, { PropType } from 'vue';
 import RegionAutocompleteCard from '@/components/RegionAutocompleteCard.vue';
 import DaysSliderCard from '@/components/DaysSliderCard.vue';
 import NewDailyCasesGraphCard from '@/components/NewDailyCasesGraphCard.vue';
 import { IReport, IGraphData } from '@/@types';
 import { getReports } from '@/services/getReports';
+import { IReportType } from '@/utils/reportTypes';
 
 export default Vue.extend({
   name: 'Home',
@@ -42,6 +46,10 @@ export default Vue.extend({
     RegionAutocompleteCard,
     DaysSliderCard,
     NewDailyCasesGraphCard,
+  },
+
+  props: {
+    type: Object as PropType<IReportType>,
   },
 
   data() {
