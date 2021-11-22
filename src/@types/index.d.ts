@@ -4,6 +4,7 @@ export interface IRegion {
 }
 
 export interface IReport {
+  [x: string]: number;
   date: string;
   last_update: string;
   confirmed: number;

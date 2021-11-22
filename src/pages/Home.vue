@@ -20,10 +20,11 @@
         id="graphs-container"
       >
         <!-- Graphs -->
-        <NewDailyCasesGraphCard
+        <GraphCard
           :newDailyCases="newDailyCases"
           :loadingReports="loadingReports"
           :days="days"
+          :title="type.title"
         />
       </v-container>
     </v-container>
@@ -34,7 +35,7 @@
 import Vue, { PropType } from 'vue';
 import RegionAutocompleteCard from '@/components/RegionAutocompleteCard.vue';
 import DaysSliderCard from '@/components/DaysSliderCard.vue';
-import NewDailyCasesGraphCard from '@/components/NewDailyCasesGraphCard.vue';
+import GraphCard from '@/components/GraphCard.vue';
 import { IReport, IGraphData } from '@/@types';
 import { getReports } from '@/services/getReports';
 import { IReportType } from '@/utils/reportTypes';
@@ -45,7 +46,7 @@ export default Vue.extend({
   components: {
     RegionAutocompleteCard,
     DaysSliderCard,
-    NewDailyCasesGraphCard,
+    GraphCard,
   },
 
   props: {
@@ -75,7 +76,7 @@ export default Vue.extend({
       });
 
       const dailyCasesX = this.reports.map((reports) => reports.date);
-      const dailyCasesY = this.reports.map((reports) => reports.confirmed_diff);
+      const dailyCasesY = this.reports.map((reports) => reports[this.type.key]);
 
       this.newDailyCases = { x: dailyCasesX, y: dailyCasesY };
     },

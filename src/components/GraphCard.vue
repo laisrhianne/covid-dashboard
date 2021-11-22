@@ -1,7 +1,7 @@
 <template>
   <v-card color="white" :width="0.9 * windowWidth">
     <v-card-title class="primary white--text graph-card-title">
-      <p class="card-title">New Daily Cases</p>
+      <p class="card-title">{{ title }} Graph</p>
       <v-expansion-panels
         :style="`maxWidth: ${
           windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
@@ -60,6 +60,7 @@ export default Vue.extend({
     newDailyCases: Object as PropType<IGraphData>,
     loadingReports: Boolean,
     days: Number,
+    title: String,
   },
 
   data() {
