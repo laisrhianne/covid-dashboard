@@ -1,19 +1,9 @@
 <template>
-  <v-card color="white" :width="0.9 * windowWidth">
+  <v-card color="white" width="90%">
     <v-card-title class="primary white--text graph-card-title">
       <p class="card-title">{{ title }} Graph</p>
-      <v-expansion-panels
-        :style="`maxWidth: ${
-          windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
-        }px;`"
-      >
-        <v-expansion-panel
-          id="options-panel"
-          :style="`maxWidth: ${
-            windowWidth > 480 ? windowWidth * 0.2 : windowWidth * 0.7
-          }px;
-          position: ${windowWidth > 430 ? 'absolute' : 'relative'}`"
-        >
+      <v-expansion-panels>
+        <v-expansion-panel id="options-panel">
           <v-expansion-panel-header> Options </v-expansion-panel-header>
           <v-expansion-panel-content>
             <v-checkbox
@@ -53,8 +43,10 @@ import { std as standardDeviation } from 'mathjs';
 import { IGraphData } from '@/@types';
 import { getSimpleMovingAverage } from '@/utils/simpleMovingAverage';
 
+type IGraphMode = 'scatter' | 'bar';
+type XAnchor = 'right' | 'auto' | 'left' | 'center' | undefined;
 export default Vue.extend({
-  name: 'NewDailyCasesGraphCard',
+  name: 'GraphCard',
 
   props: {
     newDailyCases: Object as PropType<IGraphData>,
@@ -65,10 +57,8 @@ export default Vue.extend({
 
   data() {
     return {
-      windowWidth: window.screen.width,
-      windowHeight: window.screen.height,
       variableError: false,
-      graphMode: 'scatter',
+      graphMode: 'scatter' as IGraphMode,
     };
   },
 
@@ -96,6 +86,8 @@ export default Vue.extend({
 
         const config = { responsive: true };
 
+        const xanchor = 'right' as XAnchor;
+
         const layout = {
           autosize: true,
           showLegend: true,
@@ -108,7 +100,7 @@ export default Vue.extend({
           },
           legend: {
             x: 1,
-            xanchor: 'right',
+            xanchor,
             y: 1,
           },
         };
@@ -139,7 +131,7 @@ export default Vue.extend({
           type: 'scatter',
         };
 
-        const data = [mainTrace, movingAverageTrace];
+        const data = [mainTrace, movingAverageTrace] as Plotly.Data[];
 
         Plotly.newPlot('daily-cases-graph', data, layout, config);
       }
