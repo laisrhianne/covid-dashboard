@@ -29,7 +29,7 @@
       </v-expansion-panels>
     </v-card-title>
     <v-card-text>
-      <v-container v-show="!loadingReports" id="daily-cases-graph"
+      <v-container v-show="!loadingReports" id="graph"
         ><!-- Graph --></v-container
       >
     </v-card-text>
@@ -65,7 +65,7 @@ export default Vue.extend({
   methods: {
     plotGraph() {
       if (this.newDailyCases?.x?.length && this.newDailyCases?.y?.length) {
-        Plotly.purge('daily-cases-graph');
+        Plotly.purge('graph');
 
         const movingAverage = getSimpleMovingAverage(
           this.newDailyCases.y,
@@ -133,7 +133,7 @@ export default Vue.extend({
 
         const data = [mainTrace, movingAverageTrace] as Plotly.Data[];
 
-        Plotly.newPlot('daily-cases-graph', data, layout, config);
+        Plotly.newPlot('graph', data, layout, config);
       }
     },
   },
@@ -153,6 +153,12 @@ export default Vue.extend({
 <style>
 #options-panel {
   position: relative;
+}
+
+#graph {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
 }
 
 .graph-card-title {
