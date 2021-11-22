@@ -4,7 +4,14 @@
       <p class="card-title">Days for Moving Average</p>
     </v-card-title>
     <v-card-actions>
-      <v-text-field v-model="days" single-line type="number" :rules="rules" />
+      <v-text-field
+        class=""
+        v-model="days"
+        single-line
+        type="number"
+        :rules="rules"
+        @change="emitDays"
+      />
     </v-card-actions>
   </v-card>
 </template>
@@ -29,6 +36,12 @@ export default Vue.extend({
   },
 
   methods: {
+    increment() {
+      this.days++;
+    },
+    decrement() {
+      this.days--;
+    },
     emitDays() {
       this.$emit('selectedDays', this.days);
     },
