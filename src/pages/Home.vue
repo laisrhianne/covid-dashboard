@@ -74,11 +74,15 @@ export default Vue.extend({
         this.loadingReports = false;
         return data;
       });
+    },
+  },
 
-      const dailyCasesX = this.reports.map((reports) => reports.date);
-      const dailyCasesY = this.reports.map((reports) => reports[this.type.key]);
-
-      this.newDailyCases = { x: dailyCasesX, y: dailyCasesY };
+  watch: {
+    type: function ({ key }: { key: string }) {
+      this.newDailyCases = {
+        x: this.reports.map((report) => report.date),
+        y: this.reports.map((report) => report[key]),
+      };
     },
   },
 });
