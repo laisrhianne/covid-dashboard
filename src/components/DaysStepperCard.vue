@@ -43,7 +43,9 @@ export default Vue.extend({
       this.days--;
     },
     emitDays() {
-      this.$emit('selectedDays', this.days);
+      if (this.days && this.days >= 5 && this.days <= 90) {
+        this.$emit('selectedDays', this.days);
+      }
     },
   },
 });
