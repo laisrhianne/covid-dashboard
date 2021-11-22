@@ -6,7 +6,7 @@
       <v-container id="forms-container">
         <!-- Forms -->
         <RegionAutocompleteCard @selectedRegion="loadReports" />
-        <DaysSliderCard @selectedDays="setDays" />
+        <DaysStepperCard @selectedDays="setDays" />
       </v-container>
       <v-container class="d-flex flex-row justify-center align-center">
         <v-progress-linear
@@ -34,7 +34,7 @@
 <script lang="ts">
 import Vue, { PropType } from 'vue';
 import RegionAutocompleteCard from '@/components/RegionAutocompleteCard.vue';
-import DaysSliderCard from '@/components/DaysSliderCard.vue';
+import DaysStepperCard from '@/components/DaysStepperCard.vue';
 import GraphCard from '@/components/GraphCard.vue';
 import { IReport, IGraphData } from '@/@types';
 import { getReports } from '@/services/getReports';
@@ -45,7 +45,7 @@ export default Vue.extend({
 
   components: {
     RegionAutocompleteCard,
-    DaysSliderCard,
+    DaysStepperCard,
     GraphCard,
   },
 
